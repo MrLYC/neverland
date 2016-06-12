@@ -8,6 +8,6 @@ class UrlMappingAdmin(admin.ModelAdmin):
     list_display = ['alias', 'raw_url', 'update_at']
     list_filter = ['update_at']
     search_fields = ['alias', 'raw_url', 'update_at']
-    
+
 
 admin.site.register(UrlMapping, UrlMappingAdmin)
