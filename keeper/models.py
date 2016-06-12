@@ -17,3 +17,6 @@ class Keeper(models.Model):
     charset = models.CharField(max_length=16, null=True, blank=True)
     reason = models.CharField(max_length=255, null=True, blank=True)
     status = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name

@@ -6,6 +6,7 @@ from . import models
 
 
 class KeeperView(generic.View):
+
     def get(self, request, path):
         keeper = get_object_or_404(models.Keeper, name=path)
 
@@ -21,3 +22,18 @@ class KeeperView(generic.View):
 
         return http.HttpResponse(**response_params)
 
+    def post(self, request, path):
+        keeper, _ = models.Keeper.objects.get_or_create(name=path)
+        if keeper.token and keeper.token != request.META.get("HTTP_X_TOKEN"):
+            raise http.Http404()
+
+        keeper.data = request.body
+        keeper.reason = request.GET.get("reason")
+        keeper.status = request.GET.get("status")
+        keeper.charset = request.GET.get("charset")
+        keeper.content_type = request.META.get("CONTENT_TYPE")
+        keeper.save()
+        return http.HttpResponse(
+            keeper.data, reason=keeper.reason, charset=keeper.charset,
+            status=keeper.status, content_type=keeper.content_type,
+        )
