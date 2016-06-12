@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     'redirector',
+    'keeper',
 )
 
 MIDDLEWARE_CLASSES = (
