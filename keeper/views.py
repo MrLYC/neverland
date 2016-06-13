@@ -37,7 +37,7 @@ class KeeperView(generic.View):
         if write_token is not None:
             keeper.write_token = write_token
 
-        read_token = equest.META.get("HTTP_READ_TOKEN")
+        read_token = request.META.get("HTTP_READ_TOKEN")
         if read_token is not None:
             keeper.read_token = read_token
 
