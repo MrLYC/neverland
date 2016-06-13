@@ -23,7 +23,7 @@ class KeeperView(generic.View):
         return http.HttpResponse(**response_params)
 
     def post(self, request, path):
-        keeper, _ = models.Keeper.objects.get_or_create(name=path)
+        keeper = get_object_or_404(models.Keeper, name=path)
         if keeper.token and keeper.token != request.META.get("HTTP_X_TOKEN"):
             raise http.Http404()
 
