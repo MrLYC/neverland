@@ -28,9 +28,7 @@ class Keeper(models.Model):
     )
     reason = models.CharField(max_length=255, null=True, blank=True)
     status = models.IntegerField(null=True, blank=True)
-    comment = models.CharField(
-        max_length=32, null=False, blank=False, default=None,
-    )
+    comment = models.CharField(max_length=32, null=True, blank=True)
 
     @property
     def content_type(self):
