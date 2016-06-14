@@ -10,6 +10,7 @@ class UrlMapping(models.Model):
 
     alias = models.CharField(max_length=255, null=False, blank=False)
     raw_url = models.CharField(max_length=255, null=False, blank=False)
+    comment = models.CharField(max_length=32, null=False, blank=False)
 
     def __str__(self):
         return self.alias
