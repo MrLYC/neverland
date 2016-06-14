@@ -4,10 +4,16 @@ from .models import UrlMapping
 
 
 class UrlMappingAdmin(admin.ModelAdmin):
-    fields = ['alias', 'raw_url']
-    list_display = ['alias', 'raw_url', 'update_at']
-    list_filter = ['update_at']
-    search_fields = ['alias', 'raw_url', 'update_at']
+    list_display = [
+        "alias", "raw_url", "visit_count", "visited_at", "update_at",
+    ]
+    list_filter = ["update_at", "visited_at"]
+    search_fields = ["alias", "raw_url", "update_at", "visited_at"]
+    ordering = [ "-visit_count", "-visited_at"]
+    fieldsets = [
+        (None, {"fields": ["alias", "raw_url"]}),
+        ("Visit", {"fields": ["visit_count"]}),
+    ]
 
 
 admin.site.register(UrlMapping, UrlMappingAdmin)

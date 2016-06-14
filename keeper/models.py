@@ -1,8 +1,13 @@
 from django.db import models
+from django.utils.timezone import now
 
 
 class Keeper(models.Model):
     update_at = models.DateTimeField(auto_now=True)
+
+    visited_at = models.DateTimeField( auto_now_add=True)
+    visit_count = models.IntegerField(default=0)
+
     name = models.CharField(
         max_length=255, null=False, blank=False, unique=True,
     )
@@ -44,3 +49,8 @@ class Keeper(models.Model):
             except UnicodeDecodeError:
                 pass
         return super(Keeper, self).save()
+
+    def visit(self):
+        self.visit_count += 1
+        self.visited_at = now()
+        self.save()

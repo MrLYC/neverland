@@ -22,6 +22,8 @@ class KeeperView(generic.View):
         if keeper.status:
             response_params["status"] = keeper.status
 
+        keeper.visit()
+
         return http.HttpResponse(**response_params)
 
     def post(self, request, path):
