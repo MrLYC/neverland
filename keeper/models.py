@@ -5,7 +5,7 @@ from django.utils.timezone import now
 class Keeper(models.Model):
     update_at = models.DateTimeField(auto_now=True)
 
-    visited_at = models.DateTimeField( auto_now_add=True)
+    visited_at = models.DateTimeField(auto_now_add=True)
     visit_count = models.IntegerField(default=0)
 
     name = models.CharField(
@@ -28,7 +28,9 @@ class Keeper(models.Model):
     )
     reason = models.CharField(max_length=255, null=True, blank=True)
     status = models.IntegerField(null=True, blank=True)
-    comment = models.CharField(max_length=32, null=False, blank=False)
+    comment = models.CharField(
+        max_length=32, null=False, blank=False, default=None,
+    )
 
     @property
     def content_type(self):
