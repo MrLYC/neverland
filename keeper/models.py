@@ -18,7 +18,9 @@ class Keeper(models.Model):
     data = models.TextField(max_length=1024 * 20, null=True, blank=True)
     read_token = models.CharField(max_length=16, null=True, blank=True)
     write_token = models.CharField(max_length=16, null=True, blank=True)
-    charset = models.CharField(max_length=16, null=True, blank=True)
+    charset = models.CharField(
+        max_length=16, null=True, blank=True, default="utf-8",
+    )
     reason = models.CharField(max_length=255, null=True, blank=True)
     status = models.IntegerField(null=True, blank=True)
 

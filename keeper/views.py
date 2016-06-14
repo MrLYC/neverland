@@ -49,8 +49,7 @@ class KeeperView(generic.View):
             keeper.status = status
 
         charset = request.GET.get("charset", request.encoding)
-        if charset is not None:
-            keeper.charset = charset
+        keeper.charset = charset
 
         content_type = request.META.get("CONTENT_TYPE")
         if content_type is not None:
