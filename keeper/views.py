@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.views import generic
 from django import http
+from django.conf import settings
 
 from . import models
 
@@ -16,8 +17,6 @@ class KeeperView(generic.View):
         response_params = {"content": keeper.data}
         if keeper.content_type:
             response_params["content_type"] = keeper.content_type
-        if keeper.charset:
-            response_params["charset"] = keeper.charset
         if keeper.reason:
             response_params["reason"] = keeper.reason
         if keeper.status:
@@ -49,13 +48,13 @@ class KeeperView(generic.View):
         if status is not None:
             keeper.status = status
 
-        charset = request.GET.get("charset")
+        charset = request.GET.get("charset", request.encoding)
         if charset is not None:
             keeper.charset = charset
 
         content_type = request.META.get("CONTENT_TYPE")
         if content_type is not None:
-            keeper.content_type = content_type
+            keeper.c_type = content_type.split(";")[0]
 
         keeper.save()
 
