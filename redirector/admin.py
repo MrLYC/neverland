@@ -10,11 +10,11 @@ class UrlMappingAdmin(admin.ModelAdmin):
     ]
     list_filter = ["update_at", "visited_at"]
     search_fields = ["alias", "raw_url", "update_at", "visited_at"]
-    ordering = [ "-visit_count", "-visited_at"]
     fieldsets = [
         (None, {"fields": ["alias", "raw_url", "comment"]}),
         ("Visit", {"fields": ["visit_count"]}),
     ]
+    ordering = ["alias", "visit_count", "visited_at"]
 
 
 admin.site.register(UrlMapping, UrlMappingAdmin)

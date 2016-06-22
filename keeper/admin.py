@@ -17,7 +17,7 @@ class KeeperAdmin(admin.ModelAdmin):
         ("Data", {"fields": ["data", "comment"]}),
         ("Visit", {"fields": ["visit_count"]}),
     ]
-    ordering = [ "-visit_count", "-visited_at"]
+    ordering = ["name", "visit_count", "visited_at"]
 
 
 admin.site.register(Keeper, KeeperAdmin)
