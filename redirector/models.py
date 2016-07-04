@@ -8,7 +8,9 @@ class UrlMapping(models.Model):
     visited_at = models.DateTimeField(auto_now_add=True)
     visit_count = models.IntegerField(default=0)
 
-    alias = models.CharField(max_length=255, null=False, blank=False)
+    alias = models.CharField(
+        max_length=255, null=False, blank=False, unique=True,
+    )
     raw_url = models.CharField(max_length=255, null=False, blank=False)
     comment = models.CharField(max_length=32, null=True, blank=True)
 

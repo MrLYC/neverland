@@ -22,5 +22,7 @@ urlpatterns = [
     url(r'^k/', include('keeper.urls')),
     url(r'^admin/?', include(admin.site.urls)),
     url(r'^/?$', RedirectView.as_view(url="/admin/")),
-    url(r'^favicon.ico$', RedirectView.as_view(url="/static/favicon.ico")),
+    url(r'^favicon.ico$', RedirectView.as_view(
+        url="/static/favicon.ico", permanent=True,
+    )),
 ]

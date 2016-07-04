@@ -5,8 +5,8 @@ from .models import UrlMapping
 
 class UrlMappingAdmin(admin.ModelAdmin):
     list_display = [
-        "alias", "raw_url", "comment", "visit_count",
-        "visited_at", "update_at",
+        "alias", "comment", "visit_count",
+        "visited_at", "update_at", "raw_url",
     ]
     list_filter = ["update_at", "visited_at"]
     search_fields = ["alias", "raw_url", "update_at", "visited_at"]
