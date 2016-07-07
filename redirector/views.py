@@ -10,10 +10,13 @@ class RedirectView(generic.View):
         url_mapping = models.UrlMapping.objects.filter(alias=path).first()
 
         if not url_mapping:
-            search_path = "/".join(path.rsplit("/", 1)[:-1])
+            search_path = path.rsplit("/")[:-1]
+            if search_path:
+                search_path = " ".join(search_path)
+            else:
+                search_path = path
             return render(request, "redirector/404.html", dictionary={
-                "search_path": search_path or path,
-                "alias": path,
+                "search_path": search_path,
             })
 
         url_mapping.visit()
