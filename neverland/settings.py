@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
 Django settings for neverland project.
 
@@ -42,6 +44,7 @@ INSTALLED_APPS = (
     'neverland',
     'redirector',
     'keeper',
+    'postman',
 )
 
 MIDDLEWARE_CLASSES = (

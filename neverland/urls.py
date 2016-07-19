@@ -20,6 +20,7 @@ from django.views.generic.base import RedirectView
 urlpatterns = [
     url(r'^r/', include('redirector.urls')),
     url(r'^k/', include('keeper.urls')),
+    url(r'^p/', include('postman.urls')),
     url(r'^admin/?', include(admin.site.urls)),
     url(r'^/?$', RedirectView.as_view(url="/admin/")),
     url(r'^favicon.ico$', RedirectView.as_view(
