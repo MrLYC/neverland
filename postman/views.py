@@ -63,8 +63,11 @@ class MailToView(generic.View):
             subject=data.get("subject"), content=data.get("content"),
         )
 
-        email.send(
-            user=email_settings.auth_user,
-            passwd=email_settings.auth_password,
-        )
+        try:
+            email.send(
+                user=email_settings.auth_user,
+                passwd=email_settings.auth_password,
+            )
+        except Exception as err:
+            return HttpResponseForbidden(str(err))
         return HttpResponse("ok")
