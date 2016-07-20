@@ -56,6 +56,8 @@ class MailToView(generic.View):
         if not receivers:
             return HttpResponseForbidden("receiver can not be empty")
 
+        email_settings.visit()
+
         email = EMail(
             server=email_settings.smtp_server,
             sender=email_settings.sender or email_settings.auth_user,
