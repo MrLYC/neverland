@@ -21,4 +21,4 @@ class RedirectView(generic.View):
 
         url_mapping.visit()
 
-        return redirect(url_mapping.raw_url)
+        return redirect(url_mapping.raw_url, permanent=False)
