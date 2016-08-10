@@ -10,7 +10,7 @@ class RedirectView(generic.View):
         url_mapping = models.UrlMapping.objects.filter(alias=path).first()
 
         if not url_mapping:
-            search_path = path.rsplit("/")[:-1]
+            search_path = path.rsplit("/")
             if search_path:
                 search_path = " ".join(search_path)
             else:
