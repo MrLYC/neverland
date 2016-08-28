@@ -39,7 +39,7 @@ class BaseTarget(six.with_metaclass(BaseTargetMeta, object)):
         handler = getattr(self, method, self.default_handle)
         response = handler()
 
-        if isinstance(response, http.HttpResponse):
+        if isinstance(response, http.response.HttpResponseBase):
             return response
 
         elif isinstance(response, basestring):

@@ -3,6 +3,7 @@ import logging
 
 from django.shortcuts import get_object_or_404
 from django import http
+from django.conf import settings
 
 from mountain.models import ViewRule
 from mountain.register import Targets
@@ -25,4 +26,7 @@ def target_view(request, path):
         return target.handle()
     except Exception as err:
         logger.exception(err)
-        return http.HttpResponseServerError()
+        err_msg = "server error"
+        if settings.DEBUG:
+            err_msg = str(err)
+        return http.HttpResponseServerError(err_msg)
