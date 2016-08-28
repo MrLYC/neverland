@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'redirector',
     'keeper',
     'postman',
+    'mountain',
 )
 
 MIDDLEWARE_CLASSES = (
