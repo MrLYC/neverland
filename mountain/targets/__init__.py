@@ -4,6 +4,8 @@ import six
 
 from django import http
 
+import yaml
+
 
 class BaseTargetMeta(type):
     def __new__(cls, name, bases, attrs):
@@ -23,6 +25,11 @@ class BaseTarget(six.with_metaclass(BaseTargetMeta, object)):
         self.rule = rule
         self.request = request
         self.path = path
+
+        try:
+            self.params = yaml.load(self.rule.params)
+        except yaml.ScannerError:
+            self.params = None
 
     def default_handle(self):
         return http.HttpResponseNotAllowed()

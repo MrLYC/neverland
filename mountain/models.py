@@ -21,8 +21,8 @@ class ViewRule(models.Model):
     token = models.CharField(
         max_length=32, default=None, blank=False, null=True,
     )
-    params = models.CharField(
-        max_length=255, default=None, blank=False, null=True,
+    params = models.TextField(
+        max_length=1024 * 5, default=None, blank=False, null=True,
     )
 
     class Meta:

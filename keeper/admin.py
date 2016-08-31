@@ -11,7 +11,7 @@ class KeeperAdmin(admin.ModelAdmin):
     search_fields = ["name", "c_type", "update_at", "visited_at"]
     fieldsets = [
         (None, {"fields": [
-            "name", "c_type", "read_token","write_token",
+            "name", "c_type", "read_token", "write_token",
             "charset", "reason", "status",
         ]}),
         ("Data", {"fields": ["data", "comment"]}),

@@ -1,5 +1,9 @@
+
+import yaml
+
 from django.contrib import admin
 from django import forms
+from django.forms.utils import ErrorList
 
 from .models import ViewRule
 from .register import Targets
@@ -24,6 +28,20 @@ class ViewRuleForm(forms.ModelForm):
             (k, i.description)
             for k, i in Targets.items()
         ]
+
+    def is_valid(self):
+        if not super(ViewRuleForm, self).is_valid():
+            return False
+
+        params = self.data["params"]
+
+        try:
+            yaml.load(params)
+        except Exception as err:
+            self.errors["params"] = ErrorList([str(err)])
+            return False
+
+        return True
 
 
 class ViewRuleAdmin(admin.ModelAdmin):
