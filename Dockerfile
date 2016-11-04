@@ -15,11 +15,11 @@ ENV DB_HOST ""
 ENV DB_PORT ""
 
 RUN apk update && \
-    apk add git python py-pip uwsgi-python py-mysqldb tree && \
+    apk add git python py-pip uwsgi-python py-mysqldb && \
     git clone --depth 1 https://github.com/MrLYC/neverland.git && \
     pip install -r /neverland/requirements.txt && \
-    apk del git py-pip uwsgi-python
+    apk del git py-pip
 
 EXPOSE 7581
 
-ENTRYPOINT ["ls", "-alF", "/entry.sh"]
+ENTRYPOINT ["/entry.sh"]
