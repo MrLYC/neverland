@@ -5,9 +5,10 @@ WORKDIR /
 
 ADD conf/uwsgi.ini /etc/uwsgi.ini
 ADD entry.sh /entry.sh
+VOLUME /data/
 
-ENV DB_ENGINE django.db.backends.sqlite3
-ENV DB_NAME /nerverland.sqlite3
+ENV DB_ENGINE django.db.backends.mysql
+ENV DB_NAME nerverland
 ENV DB_USER nerverland
 ENV DB_PASSWORD ""
 ENV DB_HOST ""

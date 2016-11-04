@@ -88,8 +88,12 @@ WSGI_APPLICATION = "neverland.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ["DB_ENGINE"],
-        "NAME": os.environ["DB_NAME"],
+        "ENGINE": os.environ.get(
+            "DB_ENGINE", "django.db.backends.sqlite3",
+        ),
+        "NAME": os.environ.get(
+            "DB_NAME", "/data/nerverland.sqlite3"
+        ),
         "USER": os.environ.get("DB_USER"),
         "PASSWORD": os.environ.get("DB_PASSWORD"),
         "HOST": os.environ.get("DB_HOST"),
