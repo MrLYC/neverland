@@ -1,11 +1,11 @@
 FROM alpine:latest
 MAINTAINER lyc <imyikong@gmail.com>
 
-WORKDIR /
-
 ADD conf/uwsgi.ini /etc/uwsgi.ini
 ADD entry.sh /entry.sh
+
 VOLUME /data/
+WORKDIR /
 
 ENV DB_ENGINE django.db.backends.mysql
 ENV DB_NAME nerverland
