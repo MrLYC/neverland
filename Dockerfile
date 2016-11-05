@@ -22,4 +22,4 @@ RUN apk update && \
 
 EXPOSE 7581
 
-ENTRYPOINT ["/entry.sh"]
+ENTRYPOINT ["sh"]
