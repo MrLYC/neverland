@@ -20,7 +20,8 @@ RUN apk update && \
     pip install -r /neverland/requirements.txt && \
     addgroup www-data && \
     adduser www-data -G www-data -D && \
-    apk del git py-pip
+    apk del git py-pip && \
+    rm -rf /var/cache/apk/*
 
 EXPOSE 7581
 
