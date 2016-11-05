@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 /neverland/manage.py syncdb
 /neverland/manage.py create_admin
