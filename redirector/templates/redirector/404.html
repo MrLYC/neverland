@@ -10,7 +10,18 @@
     <body>
         <h1>Not Found</h1>
         <p>The requested URL {{ alias }} was not found on this server.</p>
-        <p>You can search the alias from admin site <a href="{% url 'admin:redirector_urlmapping_changelist' %}?q={{ search_path|urlencode }}">here</a>.
+        <p>
+        You can search the alias from admin site <a href="{% url 'admin:redirector_urlmapping_changelist' %}?q={{ search_path|urlencode }}">here</a>.
         </p>
+        {% if suggestions != None %}
+        <p>
+        Suggesstions:
+            <ol>
+                {% for i in suggestions %}
+                <li><a href="{{ i.alias }}">{{ i.alias }}</a></li>
+                {% endfor %}
+            </ol>
+        </p>
+        {% endif %}
     </body>
 </html>

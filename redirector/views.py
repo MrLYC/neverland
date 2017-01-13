@@ -9,16 +9,25 @@ class RedirectView(generic.View):
     def get(self, request, path):
         url_mapping = models.UrlMapping.objects.filter(alias=path).first()
 
-        if not url_mapping:
-            search_path = path.rsplit("/")
-            if search_path:
-                search_path = " ".join(search_path)
-            else:
-                search_path = path
-            return render(request, "redirector/404.html", dictionary={
-                "search_path": search_path,
-            })
+        if url_mapping:
+            url_mapping.visit()
 
-        url_mapping.visit()
+            return redirect(url_mapping.raw_url, permanent=False)
+        search_paths = path.rsplit("/")
+        if search_paths:
+            search_path = " ".join(search_paths)
+        else:
+            search_path = path
+        suggestions = None
+        if request.user.is_staff:
+            for path in search_paths:
+                qs = models.UrlMapping.objects.filter(alias__contains=path)
+                if suggestions is None:
+                    suggestions = qs
+                else:
+                    suggestions |= qs
+        return render(request, "redirector/404.html", dictionary={
+            "search_path": search_path,
+            "suggestions": suggestions,
+        })
 
-        return redirect(url_mapping.raw_url, permanent=False)
