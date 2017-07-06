@@ -57,6 +57,8 @@ target/
 *.bak
 *.tmp
 *.*~
+settings_extend.py
+settings_extend.pyc
 
 # virtualenv
 .dev/activate
