@@ -123,5 +123,5 @@ STATIC_URL = "/static/"
 STATIC_ROOT = "/usr/share/nginx/html/static/"
 
 # Security
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
