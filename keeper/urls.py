@@ -4,5 +4,5 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^(?P<path>[\w/\-]+)/?$', views.KeeperView.as_view()),
+    url(r'^(?P<path>.+?)/?$', views.KeeperView.as_view()),
 ]
