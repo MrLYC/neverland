@@ -6,9 +6,22 @@ from django.contrib import admin
 from .models import Keeper
 
 
+class BinOrTextField(CharField):
+
+    def to_python(self, value):
+        import pdb
+        pdb.set_trace()
+        return super(BinOrTextField, self).to_python(value)
+
+    def widget_attrs(self, widget):
+        import pdb
+        pdb.set_trace()
+        return super(BinOrTextField, self).widget_attrs(widget)
+
+
 class KeeperForm(forms.ModelForm):
     data = FileField(required=False)
-    text = CharField(
+    text = BinOrTextField(
         max_length=1024 * 20, required=False,
         widget=forms.Textarea,
     )
