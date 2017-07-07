@@ -73,8 +73,7 @@ class Keeper(models.Model):
     c_type = models.CharField(
         max_length=255, null=True, blank=True, choices=CONTENT_TYPE_CHOICES,
     )
-
-    data = models.TextField(max_length=1024 * 20, null=True, blank=True)
+    data = models.BinaryField(max_length=1024 * 20, null=True, blank=True)
     read_token = models.CharField(max_length=16, null=True, blank=True)
     write_token = models.CharField(max_length=16, null=True, blank=True)
     charset = models.CharField(
@@ -96,14 +95,6 @@ class Keeper(models.Model):
 
     def __str__(self):
         return self.name
-
-    def save(self):
-        if self.charset and isinstance(self.data, bytes):
-            try:
-                self.data = self.data.decode(self.charset)
-            except UnicodeDecodeError:
-                pass
-        return super(Keeper, self).save()
 
     def visit(self):
         self.visit_count += 1

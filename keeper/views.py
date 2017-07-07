@@ -14,7 +14,10 @@ class KeeperView(generic.View):
         if read_token and read_token != request.GET.get("read_token"):
             return http.HttpResponseNotFound()
 
-        response_params = {"content": keeper.data}
+        response_params = {
+            "content": keeper.data,
+            "charset": keeper.charset or None,
+        }
         if keeper.content_type:
             response_params["content_type"] = keeper.content_type
         if keeper.reason:
@@ -60,6 +63,6 @@ class KeeperView(generic.View):
         keeper.save()
 
         return http.HttpResponse(
-            keeper.data, reason=keeper.reason, charset=keeper.charset,
+            keeper.data, reason=keeper.reason, charset=keeper.charset or None,
             status=keeper.status, content_type=keeper.content_type,
         )
