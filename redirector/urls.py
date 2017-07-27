@@ -4,5 +4,9 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^(?P<path>[\w/\-]+)/?$', views.RedirectView.as_view()),
+    url(
+        r'^(?P<path>[\w/\-]+)/?$',
+        views.RedirectView.as_view(),
+        name="redirect_view",
+    ),
 ]

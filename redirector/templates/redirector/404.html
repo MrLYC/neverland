@@ -18,7 +18,9 @@
         Suggesstions:
             <ol>
                 {% for i in suggestions %}
-                <li><a href="{{ i.alias }}">{{ i.alias }}</a></li>
+                    <li>
+                        <a href="{% url 'redirect_view' path=i.alias %}">{{ i.alias }}</a>
+                    </li>
                 {% endfor %}
             </ol>
         </p>

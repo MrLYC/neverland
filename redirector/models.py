@@ -17,6 +17,10 @@ class UrlMapping(models.Model):
     def __str__(self):
         return self.alias
 
+    def save(self, *args, **kwargs):
+        self.alias = self.alias.lstrip("/")
+        super(UrlMapping, self).save(*args, **kwargs)
+
     def visit(self):
         self.visit_count += 1
         self.visited_at = now()

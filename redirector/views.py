@@ -26,8 +26,7 @@ class RedirectView(generic.View):
                     suggestions = qs
                 else:
                     suggestions |= qs
-        return render(request, "redirector/404.html", dictionary={
+        return render(request, "redirector/404.html", {
             "search_path": search_path,
             "suggestions": suggestions,
         })
-
